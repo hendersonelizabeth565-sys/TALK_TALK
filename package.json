@@ -1,0 +1,23 @@
+{
+  "name": "tt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "clean": "node -e \"const fs = require('fs'); const path = require('path'); const distPath = path.join(__dirname, 'dist'); if (fs.existsSync(distPath)) { fs.rmSync(distPath, { recursive: true, force: true }); } console.log('Cleaned dist folder!');\"",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); const distPath = path.join(__dirname, 'dist'); if (!fs.existsSync(distPath)) fs.mkdirSync(distPath, { recursive: true }); const filesToCopy = ['index.html', 'privacy-policy.html', 'README.md', 'package.json', 'server.js', '.env.example', '.gitignore']; filesToCopy.forEach(file => { const src = path.join(__dirname, file); const dest = path.join(distPath, file); if (fs.existsSync(src)) { fs.copyFileSync(src, dest); console.log(`Copied ${file} to dist`); } }); console.log('Build complete!');\"",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "node-telegram-bot-api": "^1.1.0",
+    "nodemailer": "^9.0.1",
+    "telegraf": "^4.16.3"
+  }
+}
